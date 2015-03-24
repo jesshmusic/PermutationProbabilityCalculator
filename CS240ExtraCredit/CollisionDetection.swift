@@ -22,7 +22,7 @@ class CollisionDetection: NSObject {
         if n <= 20 {
             numberPermutations = "\(factorialInt(n))"
         } else {
-            numberPermutations = "Very large (64 bit Int overflow)"
+            numberPermutations = "64 bit Int overflow!"
         }
         var permutation:[Int] = []
         for index in 1...n {
