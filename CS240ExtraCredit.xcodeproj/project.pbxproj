@@ -12,6 +12,7 @@
 		E121CAE31AC078E000690397 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E121CAE21AC078E000690397 /* Images.xcassets */; };
 		E121CAE61AC078E000690397 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E121CAE41AC078E000690397 /* Main.storyboard */; };
 		E121CAF21AC078E000690397 /* CS240ExtraCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E121CAF11AC078E000690397 /* CS240ExtraCreditTests.swift */; };
+		E121CAFC1AC0790100690397 /* CollisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E121CAFB1AC0790100690397 /* CollisionDetection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		E121CAEB1AC078E000690397 /* CS240ExtraCreditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CS240ExtraCreditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121CAF01AC078E000690397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E121CAF11AC078E000690397 /* CS240ExtraCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS240ExtraCreditTests.swift; sourceTree = "<group>"; };
+		E121CAFB1AC0790100690397 /* CollisionDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionDetection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				E121CAE21AC078E000690397 /* Images.xcassets */,
 				E121CAE41AC078E000690397 /* Main.storyboard */,
 				E121CADC1AC078E000690397 /* Supporting Files */,
+				E121CAFB1AC0790100690397 /* CollisionDetection.swift */,
 			);
 			path = CS240ExtraCredit;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				E121CAE11AC078E000690397 /* ViewController.swift in Sources */,
 				E121CADF1AC078E000690397 /* AppDelegate.swift in Sources */,
+				E121CAFC1AC0790100690397 /* CollisionDetection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
