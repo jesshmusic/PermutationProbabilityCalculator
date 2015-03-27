@@ -18,13 +18,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var numberOfTestsTextField: NSTextField!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var runTestButton: NSButton!
+    @IBOutlet weak var actualProbabilityTextField: NSTextField!
+    @IBOutlet weak var maxDeviationTextField: NSTextField!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         progressIndicator.hidden = true
-        runTestButton.enabled = false
         nTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
@@ -34,33 +35,65 @@ class ViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
-
-    @IBAction func editingChanged(sender: AnyObject) {
-        if nTextField.stringValue == "" || rTextField.stringValue == "" || numberOfTestsTextField.stringValue == "" {
-            runTestButton.enabled = false
-        } else {
-            runTestButton.enabled = true
-        }
-    }
     
     @IBAction func runTest(sender: AnyObject) {
-        if nTextField.integerValue > 0 && rTextField.integerValue > 0 && numberOfTestsTextField.integerValue > 0 {
-            let collisionDetector = CollisionDetection()
-            let n = nTextField.integerValue
-            let r = rTextField.integerValue
-            let tests = numberOfTestsTextField.integerValue
-            progressIndicator.hidden = false
-            progressIndicator.startAnimation(sender)
-            collisionDetector.chanceOfNoCollision(n, r: r, numberOfTests: tests)
-            let data = collisionDetector.getData()
-            resultTextField.stringValue = "\(data.average)"
-            numberCollisionsTextField.stringValue = "\(data.collisions)"
-            permutationsTextField.stringValue = data.permutations
-            progressIndicator.stopAnimation(sender)
-            progressIndicator.hidden = true
-        } else {
-            resultTextField.stringValue = "ERROR!"
+        var n = 5
+        var r = 500
+        var numberOfTests = 5
+        
+        /*
+        *   Get user input from text fields
+        */
+        if nTextField.stringValue != "" {
+            n = nTextField.integerValue
         }
+        if rTextField.stringValue != "" {
+            r = rTextField.integerValue
+        }
+        if numberOfTestsTextField.stringValue != "" {
+            numberOfTests = numberOfTestsTextField.integerValue
+        }
+        if n <= 20 {
+            Calculations.numberPermutations = "\(Calculations.factorialInt(n))"
+            Calculations.actualProbability = Calculations.calculateActualProbability(n)
+        } else {
+            Calculations.numberPermutations = "64 bit Int overflow!"
+            Calculations.actualProbability = "\(Calculations.eConstant)"
+        }
+        
+        /*
+        *   Run Tests
+        */
+        runPermutationTest(numberOfElements: n, numberOfRandomPermutations: r, numberOfTests: numberOfTests, sender: sender)
+
+    }
+    
+    private func runPermutationTest(numberOfElements n: Int, numberOfRandomPermutations r: Int, numberOfTests: Int, sender: AnyObject) {
+        // Progress Indicator start
+        progressIndicator.hidden = false
+        progressIndicator.startAnimation(sender)
+
+        // Create arrays to hold the resulting permutions and collisions
+        var results = [Double]()
+        var collisions = [Int]()
+        for testNumber in 1...numberOfTests {
+            var detectionResults = CollisionDetection.chanceOfNoCollision(numberOfElements: n, numberOfRandomPermutaions: r)
+            collisions.append(detectionResults.numCollisions)
+            results.append(detectionResults.result)
+        }
+        var averages = Calculations.averageResults(results: results, collisionResults: collisions)
+        
+        // Display Test Results
+        resultTextField.stringValue = "\(averages.averageProbability)"
+        numberCollisionsTextField.stringValue = "\(averages.averageNumberOfCollisions)"
+        permutationsTextField.stringValue = Calculations.numberPermutations
+        actualProbabilityTextField.stringValue = Calculations.actualProbability
+        maxDeviationTextField.stringValue = "\(abs(averages.averageProbability - Calculations.eConstant))"
+        
+        // Progress Indicator stop
+        progressIndicator.stopAnimation(sender)
+        progressIndicator.hidden = true
+        
     }
     
 }

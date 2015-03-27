@@ -8,78 +8,39 @@
 
 import Cocoa
 
-class CollisionDetection: NSObject {
-    private var numberOfCollisions = 0
-    private var averageProbability = 0.0
-    private var numberPermutations = ""
+struct CollisionDetection {
     
-    func getData() -> (collisions: Int, permutations: String, average: Double) {
-        return (numberOfCollisions, numberPermutations, averageProbability)
-    }
-    
-    
-    func chanceOfNoCollision(n: Int, r: Int, numberOfTests: Int) {
-        if n <= 20 {
-            numberPermutations = "\(factorialInt(n))"
-        } else {
-            numberPermutations = "64 bit Int overflow!"
-        }
+    static func chanceOfNoCollision(numberOfElements n: Int, numberOfRandomPermutaions: Int) -> (result: Double, numCollisions: Int) {
+        // Create array of n in {1, 2,..., n}
         var permutation:[Int] = []
         for index in 1...n {
             permutation.append(index)
         }
-        var results = [Double]()
-        var collisions = [Int]()
-        for testNumber in 1...numberOfTests {
-            var numCollisions = 0
-            var permutations:[[Int]] = [[]]
-            for perm in 0..<r {
-                var len = n
-                for i in 0..<len {
-                    var randomValue = Int(arc4random_uniform(UInt32(len - i)))
-                    var temp = permutation[i]
-                    permutation[i] = permutation[randomValue]
-                    permutation[randomValue] = temp
-                }
-                permutations.append(permutation)
+        
+        var numCollisions = 0
+        var permutations:[[Int]] = [[]]
+        for perm in 0..<numberOfRandomPermutaions {
+            var len = n
+            for i in 0..<len {
+                var randomValue = Int(arc4random_uniform(UInt32(len - i)))
+                var temp = permutation[i]
+                permutation[i] = permutation[randomValue]
+                permutation[randomValue] = temp
             }
-            for (index, value) in enumerate(permutations) {
-                if value.count != 0 {
-                    for (subIndex, subValue) in enumerate(value) {
-                        if subIndex+1 == subValue {
-                            numCollisions++
-                            break
-                        }
+            permutations.append(permutation)
+        }
+        for (index, value) in enumerate(permutations) {
+            if value.count != 0 {
+                for (subIndex, subValue) in enumerate(value) {
+                    if subIndex+1 == subValue {
+                        numCollisions++
+                        break
                     }
                 }
             }
-            collisions.append(numCollisions)
-            results.append(1.0 - (Double(numCollisions) / Double(r)))
         }
-        var averages = averageResults(results, collisionResults: collisions)
-        numberOfCollisions = averages.averageNumberOfCollisions
-        averageProbability = averages.averageProbability
-    }
-    
-    private func averageResults (results: [Double], collisionResults: [Int]) ->(averageProbability: Double, averageNumberOfCollisions: Int) {
-        var averageResult:Double = 0.0
-        var averageCollide: Int = 0
-        for index in 0..<results.count {
-            averageCollide = averageCollide + collisionResults[index]
-            averageResult = averageResult + results[index]
-        }
-        return (averageResult / Double(results.count), averageCollide / collisionResults.count)
-    }
-    
-    private func factorialInt(var n: Int) -> Int {
-        if n <= 20 {
-            var returnVal = 1
-            for i in 1...n {
-                returnVal *= i
-            }
-            return returnVal
-        }
-        return n
+        var newResult = 1.0 - (Double(numCollisions) / Double(numberOfRandomPermutaions))
+        return (newResult, numCollisions)
     }
     
 }
