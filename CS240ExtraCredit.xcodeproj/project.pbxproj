@@ -14,6 +14,7 @@
 		E121CAF21AC078E000690397 /* CS240ExtraCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E121CAF11AC078E000690397 /* CS240ExtraCreditTests.swift */; };
 		E121CAFC1AC0790100690397 /* CollisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E121CAFB1AC0790100690397 /* CollisionDetection.swift */; };
 		E1EF556F1AC5932F009D5434 /* Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EF556E1AC5932F009D5434 /* Calculations.swift */; };
+		E1EF55711AC5B2F6009D5434 /* SimpsonParadoxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EF55701AC5B2F6009D5434 /* SimpsonParadoxTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		E121CAF11AC078E000690397 /* CS240ExtraCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS240ExtraCreditTests.swift; sourceTree = "<group>"; };
 		E121CAFB1AC0790100690397 /* CollisionDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionDetection.swift; sourceTree = "<group>"; };
 		E1EF556E1AC5932F009D5434 /* Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculations.swift; sourceTree = "<group>"; };
+		E1EF55701AC5B2F6009D5434 /* SimpsonParadoxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpsonParadoxTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				E121CAE41AC078E000690397 /* Main.storyboard */,
 				E121CADC1AC078E000690397 /* Supporting Files */,
 				E121CAFB1AC0790100690397 /* CollisionDetection.swift */,
+				E1EF55701AC5B2F6009D5434 /* SimpsonParadoxTest.swift */,
 				E1EF556E1AC5932F009D5434 /* Calculations.swift */,
 			);
 			path = CS240ExtraCredit;
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E121CAE11AC078E000690397 /* ViewController.swift in Sources */,
+				E1EF55711AC5B2F6009D5434 /* SimpsonParadoxTest.swift in Sources */,
 				E121CADF1AC078E000690397 /* AppDelegate.swift in Sources */,
 				E121CAFC1AC0790100690397 /* CollisionDetection.swift in Sources */,
 				E1EF556F1AC5932F009D5434 /* Calculations.swift in Sources */,
